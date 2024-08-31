@@ -141,6 +141,9 @@
                 case 'P':
                     result = parseFloat(firstOperand) / 1000;
                     break;
+                case 'PR':
+                    result = parseFloat(firstOperand) * 14.5;
+                    break;
             }
             currentInput = result;
             operator = '';
