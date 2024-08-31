@@ -70,6 +70,11 @@
             <button class="button" onclick="clearDisplay()">C</button>
             <button class="button operator" onclick="calculateResult()">=</button>
             <button class="button operator" onclick="setOperator('+')">+</button>
+	    
+	    <button class="button operator" onclick="setOperator('G')">G</button>
+            <button class="button operator"></button>
+            <button class="button operator""></button>
+            <button class="button operator"></button>
         </div>
     </div>
 
@@ -91,7 +96,7 @@
         }
 
         function calculateResult() {
-            if (currentInput === '' || firstOperand === '' || operator === '') return;
+            if ((currentInput === '' && operator != 'G') || firstOperand === '' || operator === '') return;
             const secondOperand = currentInput;
             let result;
             switch (operator) {
@@ -106,6 +111,9 @@
                     break;
                 case '/':
                     result = parseFloat(firstOperand) / parseFloat(secondOperand);
+                    break;
+		case 'G':
+                    result = (parseFloat(firstOperand) *1.8) + 32;
                     break;
             }
             currentInput = result;
