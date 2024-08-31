@@ -71,10 +71,10 @@
             <button class="button operator" onclick="calculateResult()">=</button>
             <button class="button operator" onclick="setOperator('+')">+</button>
 	    
-	    <button class="button operator" onclick="setOperator('G')">G</button>
-            <button class="button operator"></button>
-            <button class="button operator""></button>
-            <button class="button operator"></button>
+	    <button class="button operator" onclick="calculateFunction('G')">G</button>
+            <button class="button operator" onclick="calculateFunction('P')">P</button>
+            <button class="button operator" onclick="calculateFunction('PR')">PR</button>
+            <button class="button operator" onclick="calculateFunction('D')">D</button>
         </div>
     </div>
 
@@ -96,7 +96,7 @@
         }
 
         function calculateResult() {
-            if ((currentInput === '' && operator != 'G') || firstOperand === '' || operator === '') return;
+            if (currentInput === '' || firstOperand === '' || operator === '') return;
             const secondOperand = currentInput;
             let result;
             switch (operator) {
@@ -111,9 +111,6 @@
                     break;
                 case '/':
                     result = parseFloat(firstOperand) / parseFloat(secondOperand);
-                    break;
-		case 'G':
-                    result = (parseFloat(firstOperand) *1.8) + 32;
                     break;
             }
             currentInput = result;
@@ -131,6 +128,21 @@
 
         function updateDisplay() {
             document.getElementById('display').textContent = currentInput || '0';
+        }
+
+	function calculateFunction(operador) {
+	if (currentInput === '') return;
+	    firstOperand = currentInput;
+            let result;
+            switch (operador) {
+                case 'G':
+                    result = (parseFloat(firstOperand) *1.8) + 32;
+                    break;
+            }
+            currentInput = result;
+            operator = '';
+            firstOperand = '';
+            updateDisplay();
         }
     </script>
 </body>
